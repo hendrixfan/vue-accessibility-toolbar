@@ -1,5 +1,5 @@
 # vue-accessibility-toolbar
-
+![alt text](https://user-images.githubusercontent.com/19203626/61485966-b0f2a980-a9a2-11e9-9931-2589fcf563bd.png)
 ## Usage
 
 ```HTML
@@ -18,98 +18,50 @@ export default {
 
 ## API
 
-### accessibility-toolbar 
+### accessibility-toolbar
 
-#### props 
+#### props
 
-- `invert-colors-text` ***String*** (*optional*) `default: 'Invert Colors'` 
+- `invert-colors-text` ***String*** (*optional*) `default: 'Invert Colors'`
 
-- `highlight-links-text` ***String*** (*optional*) `default: 'Highlight Links'` 
+- `highlight-links-text` ***String*** (*optional*) `default: 'Highlight Links'`
 
-- `grayscale-text` ***String*** (*optional*) `default: 'Desaturate'` 
+- `grayscale-text` ***String*** (*optional*) `default: 'Desaturate'`
 
-- `accessibile-font-size-text` ***String*** (*optional*) `default: 'Increase Text Size'` 
+- `accessibile-font-size-text` ***String*** (*optional*) `default: 'Increase Text Size'`
 
-#### data 
+#### data
 
-- `accessibilityStates` 
+- `accessibilityStates`
 
-**initial value:** `[object Object]` 
+**initial value:** `[object Object]`
 
-- `iconColor` 
+- `iconColor`
 
-**initial value:** `'black'` 
+**initial value:** `'black'`
 
-#### computed properties 
+#### computed properties
 
-- `links` 
+- `links`
 
-#### methods 
+#### methods
 
-- `toggleState(state)` 
+- `toggleState(state)`
 
-- `applyState(state)` 
+- `applyState(state)`
 
-- `resetInvertContrast()` 
+- `resetInvertContrast()`
 
-- `resetGrayscale()` 
+- `resetGrayscale()`
 
-- `resetHighlightLinks()` 
+- `resetHighlightLinks()`
 
-- `hightlightLinks()` 
+- `hightlightLinks()`
 
-- `invertContrast(percent)` 
+- `invertContrast(percent)`
 
 ## Installation
 
 ```
 npm install vue-accessibility-toolbar
-```
-
-## Project setup
-
-```
-yarn install
-```
-
-### Compiles and hot-reloads for development
-
-```
-yarn run serve
-```
-
-### Compiles and minifies for production
-
-```
-yarn run build
-```
-
-### Run your tests
-
-```
-yarn run test
-```
-
-### Lints and fixes files
-
-```
-yarn run lint
-```
-
-### Update the API section of README.md with generated documentation
-
-```
-yarn run doc:build
-```
-
-### Run style guide dev server
-
-```
-yarn run styleguide
-```
-
-### Generate a static HTML style guide
-
-```
-yarn run styleguide:build
 ```
