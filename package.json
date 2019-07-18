@@ -1,12 +1,29 @@
 {
   "name": "vue-accessibility-toolbar",
   "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+  "private": false,
+  "author": {
+    "name": "Wolfgang Wohanka",
+    "email": "w.wohanka@gmail.com",
+    "url": "https://github.com/hendrixfan"
   },
+  "scripts": {
+    "serve": "vue-cli-service serve ./example/main.js --open",
+    "build": "vue-cli-service build --name vue-accessibility-toolbar --entry ./src/index.js --target lib",
+    "lint": "vue-cli-service lint",
+    "doc:build": "npx vuedoc.md --section API --output ./README.md ./src/components/VueAccessibilityToolbar.vue",
+    "prepublishOnly": "npm run lint && npm run build && npm run styleguide:build && npm run doc:build",
+    "styleguide": "vue-styleguidist server",
+    "styleguide:build": "vue-styleguidist build"
+  },
+  "main": "dist/vue-accessibility-toolbar.umd.js",
+  "module": "dist/vue-accessibility-toolbar.common.min.js",
+  "files": [
+    "dist/*.css",
+    "dist/*.map",
+    "dist/*.js",
+    "src/*"
+  ],
   "dependencies": {
     "core-js": "^2.6.5",
     "vue": "^2.6.10"
@@ -15,9 +32,13 @@
     "@vue/cli-plugin-babel": "^3.9.0",
     "@vue/cli-plugin-eslint": "^3.9.0",
     "@vue/cli-service": "^3.9.0",
+    "@vuedoc/md": "^1.5.0",
     "babel-eslint": "^10.0.1",
+    "component-fixture": "^0.4.1",
     "eslint": "^5.16.0",
     "eslint-plugin-vue": "^5.0.0",
+    "vue-cli-plugin-component": "^1.10.5",
+    "vue-styleguidist": "^1.7.13",
     "vue-template-compiler": "^2.6.10"
   },
   "eslintConfig": {
@@ -42,5 +63,19 @@
   "browserslist": [
     "> 1%",
     "last 2 versions"
-  ]
+  ],
+  "bugs": {
+    "url": "https://github.com/hendrixfan/vue-accessibility-toolbar/issues"
+  },
+  "keywords": [
+    "vue",
+    "accessibility",
+    "toolbar",
+    "component"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hendrixfan/vue-accessibility-toolbar"
+  }
 }
