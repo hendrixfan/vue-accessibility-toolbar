@@ -65,3 +65,11 @@ export default {
 ```
 npm install vue-accessibility-toolbar
 ```
+
+##  Dependencies
+
+Include the following stylesheet on your document's head
+
+```
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+```
