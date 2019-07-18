@@ -2,28 +2,28 @@
 <div class='accessibility-toolbar'>
   <ul class="accessibility-items">
     <li class="accessibility-item">
-      <a class="accessibility-menu-item tooltip" v-bind:class="{ active: accessibilityStates.inverted }" @click="toggleState('inverted')">
+      <a class="accessibility-menu-item tooltips tooltips-bottom" :data-tooltip="invertColorsText" v-bind:class="{ active: accessibilityStates.inverted }" @click="toggleState('inverted')" :aria-label="invertColorsText">
         <i class="material-icons" v-bind:style="{ 'color': iconColor }">
           invert_colors
         </i>
       </a>
     </li>
     <li>
-      <a class="accessibility-menu-item" v-bind:class="{ active: accessibilityStates.highlighted }" @click="toggleState('highlighted')">
+      <a class="accessibility-menu-item tooltips tooltips-bottom" :data-tooltip="highlightLinksText" v-bind:class="{ active: accessibilityStates.highlighted }" @click="toggleState('highlighted')" :aria-label="highlightLinksText">
         <i class="material-icons" v-bind:style="{ 'color': iconColor }">
           highlight
         </i>
       </a>
     </li>
     <li>
-      <a class="accessibility-menu-item" v-bind:class="{ active: accessibilityStates.greyscaled }" @click="toggleState('greyscaled')">
+      <a class="accessibility-menu-item tooltips tooltips-bottom" :data-tooltip="grayscaleText" v-bind:class="{ active: accessibilityStates.greyscaled }" @click="toggleState('greyscaled')" :aria-label="grayscaleText">
         <i class="material-icons" v-bind:style="{ 'color': iconColor }">
           format_color_reset
         </i>
       </a>
     </li>
     <li>
-      <a class="accessibility-menu-item" v-bind:class="{ active: accessibilityStates.accessibileFontSize }" @click="toggleState('accessibileFontSize')">
+      <a class="accessibility-menu-item tooltips tooltips-bottom" :data-tooltip="accessibileFontSizeText" v-bind:class="{ active: accessibilityStates.accessibileFontSize }" @click="toggleState('accessibileFontSize')" :aria-label="accessibileFontSizeText">
         <i class="material-icons" v-bind:style="{ 'color': iconColor }">
           format_size
         </i>
@@ -36,9 +36,24 @@
 
 <script>
 export default {
-  name: 'Toolbar',
+  name: 'AccessibilityToolbar',
   props: {
-    msg: String
+    invertColorsText: {
+      type: String,
+      default: "Invert Colors"
+    },
+    highlightLinksText: {
+      type: String,
+      default: "Highlight Links"
+    },
+    grayscaleText: {
+      type: String,
+      default: "Desaturate"
+    },
+    accessibileFontSizeText: {
+      type: String,
+      default: "Increase Text Size"
+    }
   },
   data() {
     return {
@@ -130,6 +145,37 @@ export default {
 </script>
 
 <style scoped>
+  .tooltips {
+    position: relative;
+  }
+
+  .tooltips:hover::before {
+    content: "";
+    position: absolute;
+  }
+
+  .tooltips.tooltips-bottom:hover::before {
+    top: calc(100% + .6rem - 5px);
+    left: calc(50% - 10px);
+    border-bottom: 5px solid #3E474F;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+  }
+  .tooltips:hover::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    width: calc(160% - 0.1rem);
+    z-index: 900;
+    padding: .5rem;
+    border-radius: .25rem;
+    background: #3E474F;
+    color: #fff;
+    font-size: 1rem;
+  }
+  .tooltips.tooltips-bottom:hover::after {
+    top: calc(100% + .6rem);
+    left: -25%;
+  }
   .accessibility-items {
     list-style-type: none;
   }
@@ -137,7 +183,6 @@ export default {
     border-right: none;
   }
   .accessibility-toolbar {
-    overflow: auto;
     width: 300px;
   }
   .accessibility-item {
@@ -162,7 +207,6 @@ export default {
   .active {
     background-color: #2196F3;
   }
-
 </style>
 
 <style>

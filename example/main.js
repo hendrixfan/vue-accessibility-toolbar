@@ -1,8 +1,8 @@
 import Vue from 'vue'
-import Toolbar from './Toolbar.vue'
+import App from './App.vue'
 
 Vue.config.productionTip = false
 
 new Vue({
-  render: h => h(Toolbar),
+  render: h => h(App),
 }).$mount('#app')
