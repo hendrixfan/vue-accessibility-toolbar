@@ -1,5 +1,1 @@
-import AccessibilityToolbar from './components/AccessibilityToolbar.vue';
-
-export {
-    AccessibilityToolbar
-}
+module.exports = require('./components/AccessibilityToolbar.vue');
