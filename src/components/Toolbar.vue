@@ -36,7 +36,7 @@
 
 <script>
 export default {
-  name: 'AccessibilityToolbar',
+  name: 'Toolbar',
   props: {
     invertColorsText: {
       type: String,
@@ -179,25 +179,28 @@ export default {
   .accessibility-items {
     list-style-type: none;
   }
-  li:not(:last-child) .accessibility-menu-item {
-    border-right: none;
-  }
   .accessibility-toolbar {
     width: 300px;
+    position: relative;
+    left: 30px;
+    bottom: 3px;
   }
   .accessibility-item {
 
   }
   .accessibility-menu-item {
+    border-radius: 100px;
     border: 2px solid #2196F3;
     text-align: center;
     float: left;
-    width: 23%;
+    width: 50px;
+    height: 50px;
     padding: 6px 0;
     transition: all 0.3s ease;
     color: black;
     font-size: 30px;
     cursor: pointer;
+    margin-right: 10px;
   }
 
   .accessibility-menu-item:hover {

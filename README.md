@@ -1,5 +1,5 @@
 # vue-accessibility-toolbar
-![alt text](https://user-images.githubusercontent.com/19203626/61485966-b0f2a980-a9a2-11e9-9931-2589fcf563bd.png)
+![alt text](https://user-images.githubusercontent.com/19203626/61536206-69b4f900-aa34-11e9-88d0-1563425f20dd.png)
 ## Usage
 
 ```HTML

@@ -1,1 +1,1 @@
-module.exports = require('./components/AccessibilityToolbar.vue');
+module.exports = require('./AccessibilityToolbar.vue');

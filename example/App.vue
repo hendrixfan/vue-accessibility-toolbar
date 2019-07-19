@@ -14,7 +14,7 @@
 <script>
 import { ComponentFixture, Editor } from 'component-fixture'
 import "component-fixture/dist/ComponentFixture.css";
-import AccessibilityToolbar from '../src/components/AccessibilityToolbar.vue'
+import AccessibilityToolbar from '../src/AccessibilityToolbar.vue'
 
 export default {
   name: 'app',
