@@ -1,9 +1,11 @@
 # vue-accessibility-toolbar
 ![alt text](https://user-images.githubusercontent.com/19203626/61536206-69b4f900-aa34-11e9-88d0-1563425f20dd.png)
+
+[Demo](https://hendrixfan.github.io/vue-accessibility-toolbar/)
 ## Usage
 
 ```HTML
-<AccessibilityToolbar :text="hello"></AccessibilityToolbar>
+<AccessibilityToolbar></AccessibilityToolbar>
 ```
 
 ```javascript
