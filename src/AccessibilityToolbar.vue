@@ -40,9 +40,9 @@ export default {
   .fab {
     position: fixed;
     width: 56px;
-    left: 2%;
-    bottom: 15px;
-    margin-left: -28px;
+    left: 3vw;
+    bottom: 4vh;
+    z-index: 999;
   }
   .fab-action-button {
     cursor: pointer;

@@ -217,9 +217,9 @@ export default {
   }
   .accessibility-toolbar {
     width: 300px;
-    position: relative;
+    position: absolute;
     left: 65px;
-    bottom: 3px;
+    bottom: 50%;
   }
   .accessibility-menu-item-icon {
     position: absolute;
@@ -235,7 +235,6 @@ export default {
     float: left;
     width: 50px;
     height: 50px;
-    padding: 6px 0;
     transition: all 0.3s ease;
     color: black;
     font-size: 30px;
