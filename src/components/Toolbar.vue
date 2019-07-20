@@ -2,29 +2,29 @@
 <div class='accessibility-toolbar'>
   <ul class="accessibility-items">
     <li class="accessibility-item">
-      <a class="accessibility-menu-item tooltips tooltips-bottom" :data-tooltip="invertColorsText" v-bind:class="{ active: accessibilityStates.inverted }" @click="toggleState('inverted')" :aria-label="invertColorsText">
-        <i class="material-icons" v-bind:style="{ 'color': iconColor }">
+      <a class="accessibility-menu-item" :data-tooltip="invertColorsText" v-bind:class="{ active: accessibilityStates.inverted }" @click="toggleState('inverted')" :aria-label="invertColorsText">
+        <i class="material-icons accessibility-menu-item-icon" v-bind:style="{ 'color': iconColor }">
           invert_colors
         </i>
       </a>
     </li>
     <li>
-      <a class="accessibility-menu-item tooltips tooltips-bottom" :data-tooltip="highlightLinksText" v-bind:class="{ active: accessibilityStates.highlighted }" @click="toggleState('highlighted')" :aria-label="highlightLinksText">
-        <i class="material-icons" v-bind:style="{ 'color': iconColor }">
+      <a class="accessibility-menu-item" :data-tooltip="highlightLinksText" v-bind:class="{ active: accessibilityStates.highlighted }" @click="toggleState('highlighted')" :aria-label="highlightLinksText">
+        <i class="material-icons accessibility-menu-item-icon" v-bind:style="{ 'color': iconColor }">
           highlight
         </i>
       </a>
     </li>
     <li>
-      <a class="accessibility-menu-item tooltips tooltips-bottom" :data-tooltip="grayscaleText" v-bind:class="{ active: accessibilityStates.greyscaled }" @click="toggleState('greyscaled')" :aria-label="grayscaleText">
-        <i class="material-icons" v-bind:style="{ 'color': iconColor }">
+      <a class="accessibility-menu-item" :data-tooltip="grayscaleText" v-bind:class="{ active: accessibilityStates.greyscaled }" @click="toggleState('greyscaled')" :aria-label="grayscaleText">
+        <i class="material-icons accessibility-menu-item-icon" v-bind:style="{ 'color': iconColor }">
           format_color_reset
         </i>
       </a>
     </li>
     <li>
-      <a class="accessibility-menu-item tooltips tooltips-bottom" :data-tooltip="accessibileFontSizeText" v-bind:class="{ active: accessibilityStates.accessibileFontSize }" @click="toggleState('accessibileFontSize')" :aria-label="accessibileFontSizeText">
-        <i class="material-icons" v-bind:style="{ 'color': iconColor }">
+      <a class="accessibility-menu-item" :data-tooltip="accessibileFontSizeText" v-bind:class="{ active: accessibilityStates.accessibileFontSize }" @click="toggleState('accessibileFontSize')" :aria-label="accessibileFontSizeText">
+        <i class="material-icons accessibility-menu-item-icon" v-bind:style="{ 'color': iconColor }">
           format_size
         </i>
       </a>
@@ -145,48 +145,88 @@ export default {
 </script>
 
 <style scoped>
-  .tooltips {
+  ul {
+    margin: 0;
+    padding: 0;
+    font-weight: normal;
+  }
+  [data-tooltip] {
     position: relative;
+    z-index: 2;
+    cursor: pointer;
   }
 
-  .tooltips:hover::before {
-    content: "";
-    position: absolute;
+  /* Hide the tooltip content by default */
+  [data-tooltip]:before,
+  [data-tooltip]:after {
+    visibility: hidden;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    filter: progid: DXImageTransform.Microsoft.Alpha(Opacity=0);
+    opacity: 0;
+    pointer-events: none;
   }
 
-  .tooltips.tooltips-bottom:hover::before {
-    top: calc(100% + .6rem - 5px);
-    left: calc(50% - 10px);
-    border-bottom: 5px solid #3E474F;
-    border-left: 10px solid transparent;
-    border-right: 10px solid transparent;
-  }
-  .tooltips:hover::after {
-    content: attr(data-tooltip);
+  /* Position tooltip above the element */
+  [data-tooltip]:before {
     position: absolute;
-    width: calc(160% - 0.1rem);
-    z-index: 900;
-    padding: .5rem;
-    border-radius: .25rem;
-    background: #3E474F;
+    bottom: 105%;
+    left: 50%;
+    margin-bottom: 5px;
+    margin-left: -80px;
+    padding: 7px;
+    width: 160px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    background-color: #000;
+    background-color: hsla(0, 0%, 20%, 0.9);
     color: #fff;
-    font-size: 1rem;
+    content: attr(data-tooltip);
+    text-align: center;
+    font-size: 14px;
+    line-height: 1.2;
   }
-  .tooltips.tooltips-bottom:hover::after {
-    top: calc(100% + .6rem);
-    left: -25%;
+
+  /* Triangle hack to make tooltip look like a speech bubble */
+  [data-tooltip]:after {
+    position: absolute;
+    bottom: 105%;
+    left: 50%;
+    margin-left: -5px;
+    width: 0;
+    border-top: 5px solid #000;
+    border-top: 5px solid hsla(0, 0%, 20%, 0.9);
+    border-right: 5px solid transparent;
+    border-left: 5px solid transparent;
+    content: " ";
+    font-size: 0;
+    line-height: 0;
   }
+
+  /* Show tooltip content on hover */
+  [data-tooltip]:hover:before,
+  [data-tooltip]:hover:after {
+    visibility: visible;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+    filter: progid: DXImageTransform.Microsoft.Alpha(Opacity=100);
+    opacity: 1;
+  }
+
   .accessibility-items {
     list-style-type: none;
   }
   .accessibility-toolbar {
     width: 300px;
     position: relative;
-    left: 30px;
+    left: 65px;
     bottom: 3px;
   }
-  .accessibility-item {
-
+  .accessibility-menu-item-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 23px;
   }
   .accessibility-menu-item {
     border-radius: 100px;
