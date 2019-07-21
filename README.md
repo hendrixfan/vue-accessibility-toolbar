@@ -32,46 +32,8 @@ export default {
 
 - `accessibile-font-size-text` ***String*** (*optional*) `default: 'Increase Text Size'`
 
-#### data
-
-- `accessibilityStates`
-
-**initial value:** `[object Object]`
-
-- `iconColor`
-
-**initial value:** `'black'`
-
-#### computed properties
-
-- `links`
-
-#### methods
-
-- `toggleState(state)`
-
-- `applyState(state)`
-
-- `resetInvertContrast()`
-
-- `resetGrayscale()`
-
-- `resetHighlightLinks()`
-
-- `hightlightLinks()`
-
-- `invertContrast(percent)`
-
 ## Installation
 
 ```
 npm install vue-accessibility-toolbar
-```
-
-##  Dependencies
-
-Include the following stylesheet on your document's head
-
-```
-<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 ```

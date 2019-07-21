@@ -216,6 +216,7 @@ export default {
     position: absolute;
     left: 65px;
     bottom: 50%;
+    margin-bottom: 2px;
   }
   .accessibility-menu-item-icon {
     position: absolute;
