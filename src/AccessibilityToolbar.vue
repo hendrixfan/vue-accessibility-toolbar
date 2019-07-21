@@ -6,7 +6,7 @@
       </i>
     </span>
     <transition name="fade">
-      <toolbar v-if="showToolbar"/>
+      <toolbar v-bind="{invertColorsText, highlightLinksText, grayscaleText, accessibileFontSizeText}" v-if="showToolbar"/>
     </transition>
   </div>
 </template>
@@ -20,18 +20,12 @@ export default {
   components: {
     Toolbar
   },
-  props: {
-  },
+  props: ['invertColorsText', 'highlightLinksText', 'grayscaleText', 'accessibileFontSizeText'],
   data() {
     return {
       showToolbar: false,
     }
   },
-  methods: {
-
-  },
-  computed: {
-  }
 }
 </script>
 

@@ -2,7 +2,7 @@
   <div id="app">
     <section class="section">
       <div class="container">
-        <h1 class="title">Section Example</h1>
+        <h1 class="title">Example</h1>
         <span><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. <a href="http://loripsum.net/" target="_blank">Idem adhuc;</a> Esse enim, nisi eris, non potes. Eiuro, inquit adridens, iniquum, hac quidem de re; Duo Reges: constructio interrete. </p>
 
 <p>Quod autem satis est, eo quicquid accessit, nimium est; Philosophi autem in suis lectulis plerumque moriuntur. <i>Et harum quidem rerum facilis est et expedita distinctio.</i> <a href="http://loripsum.net/" target="_blank">Bonum patria: miserum exilium.</a> </p>

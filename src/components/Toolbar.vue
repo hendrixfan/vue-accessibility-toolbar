@@ -3,28 +3,28 @@
   <ul class="accessibility-items">
     <li class="accessibility-item">
       <a class="accessibility-menu-item" :data-tooltip="invertColorsText" v-bind:class="{ active: accessibilityStates.inverted }" @click="toggleState('inverted')" :aria-label="invertColorsText">
-        <i class="material-icons accessibility-menu-item-icon" v-bind:style="{ 'color': iconColor }">
+        <i class="material-icons accessibility-menu-item-icon">
           invert_colors
         </i>
       </a>
     </li>
     <li>
       <a class="accessibility-menu-item" :data-tooltip="highlightLinksText" v-bind:class="{ active: accessibilityStates.highlighted }" @click="toggleState('highlighted')" :aria-label="highlightLinksText">
-        <i class="material-icons accessibility-menu-item-icon" v-bind:style="{ 'color': iconColor }">
+        <i class="material-icons accessibility-menu-item-icon">
           highlight
         </i>
       </a>
     </li>
     <li>
       <a class="accessibility-menu-item" :data-tooltip="grayscaleText" v-bind:class="{ active: accessibilityStates.greyscaled }" @click="toggleState('greyscaled')" :aria-label="grayscaleText">
-        <i class="material-icons accessibility-menu-item-icon" v-bind:style="{ 'color': iconColor }">
+        <i class="material-icons accessibility-menu-item-icon">
           format_color_reset
         </i>
       </a>
     </li>
     <li>
       <a class="accessibility-menu-item" :data-tooltip="accessibileFontSizeText" v-bind:class="{ active: accessibilityStates.accessibileFontSize }" @click="toggleState('accessibileFontSize')" :aria-label="accessibileFontSizeText">
-        <i class="material-icons accessibility-menu-item-icon" v-bind:style="{ 'color': iconColor }">
+        <i class="material-icons accessibility-menu-item-icon">
           format_size
         </i>
       </a>
@@ -63,7 +63,6 @@ export default {
         accessibileFontSize: false,
         greyscaled: false
       },
-      iconColor: 'black'
     }
   },
   methods: {
@@ -75,19 +74,16 @@ export default {
       if (state === "inverted") {
         this.resetHighlightLinks()
         this.resetGrayscale()
-        this.iconColor = this.accessibilityStates[state] ?  'white' : 'black'
         this.accessibilityStates[state] ?
           document.body.classList.add("accessibility-contrast") :
           document.body.classList.remove("accessibility-contrast")
       } else if (state === "greyscaled") {
         this.resetHighlightLinks()
         this.resetInvertContrast()
-        this.iconColor = 'black'
         this.accessibilityStates[state] ?
           document.body.classList.add("accessibility-greyscale") :
           document.body.classList.remove("accessibility-greyscale")
       } else if (state === "highlighted") {
-        this.iconColor = 'black'
         this.resetGrayscale()
         this.resetInvertContrast()
         this.hightlightLinks()
@@ -236,6 +232,7 @@ export default {
     width: 50px;
     height: 50px;
     transition: all 0.3s ease;
+    background: white;
     color: black;
     font-size: 30px;
     cursor: pointer;
@@ -260,11 +257,13 @@ export default {
     -webkit-filter: grayscale(100%);
     -moz-filter: grayscale(100%);
     filter: grayscale(100%);
+    min-height: 100vh;
   }
   .accessibility-contrast {
     -webkit-filter: invert(100%);
     -moz-filter: invert(100%);
     filter: invert(100%);
+    min-height: 100vh;
   }
   .accessibility-highlight-link {
     padding: 3px;
