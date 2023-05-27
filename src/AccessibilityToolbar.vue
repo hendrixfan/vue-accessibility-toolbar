@@ -120,8 +120,8 @@ export default {
         this.hightlightLinks();
       } else if (state === "accessibileFontSize") {
         this.accessibilityStates[state]
-          ? increaseDecreaseFontSize(document.body, 1)
-          : increaseDecreaseFontSize(document.body, -1);
+          ? this.increaseDecreaseFontSize(document.body, 1)
+          : this.increaseDecreaseFontSize(document.body, -1);
       }
     },
     resetInvertContrast() {
