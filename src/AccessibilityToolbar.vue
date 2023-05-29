@@ -1,7 +1,9 @@
 <template>
   <div class="fab">
     <span class="fab-action-button" @click="showToolbar = !showToolbar">
-      <i class="material-icons fab-action-button-icon"> accessibility </i>
+      <i class="material-icons fab-action-button-icon fixed-font-size">
+        accessibility
+      </i>
     </span>
     <transition name="fade">
       <div class="accessibility-toolbar" v-if="showToolbar">
@@ -14,7 +16,9 @@
               @click="toggleState('inverted')"
               :aria-label="invertColorsText"
             >
-              <i class="material-icons accessibility-menu-item-icon">
+              <i
+                class="material-icons accessibility-menu-item-icon fixed-font-size"
+              >
                 invert_colors
               </i>
             </a>
@@ -27,7 +31,9 @@
               @click="toggleState('highlighted')"
               :aria-label="highlightLinksText"
             >
-              <i class="material-icons accessibility-menu-item-icon">
+              <i
+                class="material-icons accessibility-menu-item-icon fixed-font-size"
+              >
                 highlight
               </i>
             </a>
@@ -40,8 +46,27 @@
               @click="toggleState('greyscaled')"
               :aria-label="grayscaleText"
             >
-              <i class="material-icons accessibility-menu-item-icon">
+              <i
+                class="material-icons accessibility-menu-item-icon fixed-font-size"
+              >
                 format_color_reset
+              </i>
+            </a>
+          </li>
+          <li>
+            <a
+              class="accessibility-menu-item mirror-text"
+              :data-tooltip="accessibileFontSizeDecreaseText"
+              v-bind:class="{
+                active: accessibilityStates.accessibileFontSizeDecrease,
+              }"
+              @click="toggleState('accessibileFontSizeDecrease')"
+              :aria-label="accessibileFontSizeDecreaseText"
+            >
+              <i
+                class="material-icons accessibility-menu-item-icon fixed-font-size"
+              >
+                format_size
               </i>
             </a>
           </li>
@@ -53,7 +78,9 @@
               @click="toggleState('accessibileFontSize')"
               :aria-label="accessibileFontSizeText"
             >
-              <i class="material-icons accessibility-menu-item-icon">
+              <i
+                class="material-icons accessibility-menu-item-icon fixed-font-size"
+              >
                 format_size
               </i>
             </a>
@@ -84,6 +111,18 @@ export default {
       type: String,
       default: "Increase Text Size",
     },
+    accessibileFontSizeDecreaseText: {
+      type: String,
+      default: "Increase Text Size",
+    },
+    desableAccessibileFontSizeDecreaseDecrease: {
+      type: Boolean,
+      default: true,
+    },
+    accessibileFontSizeStep: {
+      type: Number,
+      default: 1,
+    },
   },
   data() {
     return {
@@ -91,6 +130,7 @@ export default {
         inverted: false,
         highlighted: false,
         accessibileFontSize: false,
+        accessibileFontDecreaseSize: false,
         greyscaled: false,
       },
       showToolbar: false,
@@ -119,9 +159,9 @@ export default {
         this.resetInvertContrast();
         this.hightlightLinks();
       } else if (state === "accessibileFontSize") {
-        this.accessibilityStates[state]
-          ? this.increaseDecreaseFontSize(document.body, 1)
-          : this.increaseDecreaseFontSize(document.body, -1);
+        this.increaseDecreaseFontSize(document.body);
+      } else if (state === "accessibileFontSizeDecrease") {
+        this.increaseDecreaseFontSize(document.body, true);
       }
     },
     resetInvertContrast() {
@@ -148,16 +188,34 @@ export default {
     invertContrast(percent) {
       document.body.style.setProperty("filter", `invert(${percent})`);
     },
-    increaseDecreaseFontSize(node, step = 0) {
+    increaseDecreaseFontSize(node, decrease = false) {
       if (node.nodeType === Node.TEXT_NODE) {
-        // Increase the font size of the text node by 3 pixels
-        node.parentNode.style.fontSize = `${
-          parseFloat(node.parentNode.style.fontSize || 16) + step
-        }px`;
+        const step = this.accessibileFontSizeStep * (decrease ? -1 : 1);
+        const currentFontSize = node.parentNode.style.fontSize
+          ? node.parentNode.style.fontSize <= 0
+            ? 0
+            : node.parentNode.style.fontSize
+          : 16;
+        // Increase the font size of the text node by 3 pixels with !important
+        node.parentNode.style.setProperty(
+          "font-size",
+          `${parseFloat(currentFontSize) + step}px`,
+          "important"
+        );
+        this.resetAccessibikityFontSize();
       } else {
         // Traverse child nodes if the current node is not a text node
         for (let i = 0; i < node.childNodes.length; i++) {
-          increaseFontSize(node.childNodes[i]);
+          this.increaseDecreaseFontSize(node.childNodes[i], decrease);
+        }
+      }
+    },
+    resetAccessibikityFontSize() {
+      if (this.desableAccessibileFontSizeDecreaseDecrease) {
+        const elements = document.getElementsByClassName("fixed-font-size");
+
+        for (let i = 0; i < elements.length; i++) {
+          elements[i].style.setProperty("font-size", "20px", "important");
         }
       }
     },
@@ -385,5 +443,12 @@ ul {
   direction: ltr;
   -webkit-font-feature-settings: "liga";
   -webkit-font-smoothing: antialiased;
+}
+.mirror-text {
+  transform: scaleX(-1);
+}
+
+.fixed-font-size {
+  font-size: 20px !important;
 }
 </style>
